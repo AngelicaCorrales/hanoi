@@ -2,9 +2,9 @@ package ui;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main {
 	private BufferedReader br;	
@@ -13,11 +13,11 @@ public class Main {
 	private int[] b;
 	private int[] c;
 	public Main() throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));	
-		bw = new BufferedWriter(new FileWriter("data/hanoiOutput.txt"));
-		a=new int[2];
-		b=new int[2];
-		c=new int[2];
+		br = new BufferedReader(new FileReader("data/Hanoi_input.txt"));	
+		bw = new BufferedWriter(new FileWriter("data/Hanoi_output.txt"));
+		a=new int[1];
+		b=new int[1];
+		c=new int[1];
 	}
 	public static void main(String[] args) throws IOException {
 		Main m= new Main();
@@ -36,14 +36,14 @@ public class Main {
 			return;
 		}else {
 			int numb= Integer.parseInt(br.readLine());
-			a[1]= numb;
-			bw.write(a[1]+" "+b[1]+" "+c[1]+"\n");
+			a[0]= numb;
+			bw.write(a[0]+" "+b[0]+" "+c[0]+"\n");
 
 			hanoi(numb, a, c, b);
 			bw.write("\n");
-			a[1]=0;
-			b[1]=0;
-			c[1]=0;
+			a[0]=0;
+			b[0]=0;
+			c[0]=0;
 
 			line--;
 			cycle(line);
@@ -52,15 +52,15 @@ public class Main {
 	
 	public void hanoi(int n, int[] from, int[] to, int[] aux) throws IOException {
 		if(n==1) {
-			from[1]--;
-			to[1]++;
-			bw.write(a[1]+" "+b[1]+" "+c[1]+"\n");
+			from[0]--;
+			to[0]++;
+			bw.write(a[0]+" "+b[0]+" "+c[0]+"\n");
 			return;
 		}else {
 			hanoi(n-1,from,aux, to);
-			from[1]--;
-			to[1]++;
-			bw.write(a[1]+" "+b[1]+" "+c[1]+"\n");
+			from[0]--;
+			to[0]++;
+			bw.write(a[0]+" "+b[0]+" "+c[0]+"\n");
 			hanoi(n-1, aux, to, from);
 		}
 
